@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up Page</title>
   <style>
     * {
       margin: 0;
@@ -20,12 +20,6 @@
 
     .left {
       flex: 1;
-      background: url('assets/img/login.png') no-repeat center center;
-      background-size: cover;
-    }
-
-    .right {
-      flex: 1;
       background-color: #ffc177;
       display: flex;
       flex-direction: column;
@@ -33,7 +27,13 @@
       padding: 0 80px;
     }
 
-    .login-title {
+    .right {
+      flex: 1;
+      background: url('assets/img/login.png') no-repeat center center;
+      background-size: cover;
+    }
+
+    .signup-title {
       font-size: 48px;
       font-weight: 600;
       color: #000;
@@ -76,38 +76,37 @@
       transition: all 0.3s ease;
     }
 
-    .login-btn {
+    .signup-btn {
       background-color: #c76d14;
       color: white;
     }
 
-    .signup-btn {
+    .login-btn {
       background: transparent;
       color: #000;
     }
 
-    .signup-btn:hover {
+    .login-btn:hover {
       text-decoration: underline;
     }
 
     /* Responsive Styles */
     @media (max-width: 768px) {
       body {
-        flex-direction: column;
+        flex-direction: column-reverse;
       }
 
-      .left {
+      .left, .right {
         flex: none;
-        height: 40vh;
-      }
-
-      .right {
-        flex: none;
-        padding: 40px 30px;
+        width: 100%;
         height: auto;
       }
 
-      .login-title {
+      .left {
+        padding: 40px 30px;
+      }
+
+      .signup-title {
         font-size: 36px;
         text-align: center;
       }
@@ -122,7 +121,7 @@
     }
 
     @media (max-width: 480px) {
-      .login-title {
+      .signup-title {
         font-size: 28px;
       }
 
@@ -137,21 +136,25 @@
   </style>
 </head>
 <body>
-  <div class="left"></div>
-  <div class="right">
-    <div class="login-title">Login</div>
+  <div class="left">
+    <div class="signup-title">Sign Up</div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" />
+    </div>
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" id="username" placeholder="Enter your username" />
+      <input type="text" id="username" placeholder="Choose a username" />
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Enter your password" />
+      <input type="password" id="password" placeholder="Create a password" />
     </div>
     <div class="buttons">
-  <a href="login.html"><button class="login-btn">Login</button></a>
-  <a href="signup.html"><button class="signup-btn">Sign Up</button></a>
+        <a href="signup.html"><button class="signup-btn">Sign Up</button></a>
+    <a href="login.html"><button class="login-btn">Login</button></a>
 </div>
   </div>
+  <div class="right"></div>
 </body>
 </html>
