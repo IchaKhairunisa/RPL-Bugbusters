@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Kamar - Igloo Indekost</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #fcf6e8;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #fdb462;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .sidebar hr {
+      border: none;
+      border-top: 2px solid #000;
+      margin: 20px 0;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: black;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .nav img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: 40px;
+    }
+
+    .btn-tambah {
+      background-color: #b86416;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 30px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #d3d3d3;
+      border-radius: 5px;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card .foto {
+      background-color: #e2a86f;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn {
+      background-color: #b86416;
+      color: white;
+      border: none;
+      padding: 5px 15px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #944e12;
+    }
+
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+      .content {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div>
+      <div class="logo">
+        <img src="assets/icons/Home.png" alt="Logo">
+        <div class="logo-text">Igloo Indekost</div>
+      </div>
+      <hr />
+      <div class="nav">
+        <a href="#"><img src="assets/icons/datakamar.png" alt="Data Kamar">Data Kamar</a>
+        <a href="#"><img src="assets/icons/datapenghuni.png" alt="Data Penghuni">Data Penghuni</a>
+        <a href="#"><img src="assets/icons/datapembayaran.png" alt="Data Pembayaran">Data Pembayaran</a>
+        <a href="#"><img src="assets/icons/logout.png" alt="Logout">Log Out</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <button class="btn-tambah">Tambah Kamar</button>
+    <div class="cards">
+      <div class="card">
+        <div class="foto">Foto</div>
+        <div class="btn-container">
+          <button class="btn">Edit</button>
+          <button class="btn">Delete</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="foto">Foto</div>
+        <div class="btn-container">
+          <button class="btn">Edit</button>
+          <button class="btn">Delete</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="foto">Foto</div>
+        <div class="btn-container">
+          <button class="btn">Edit</button>
+          <button class="btn">Delete</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="foto">Foto</div>
+        <div class="btn-container">
+          <button class="btn">Edit</button>
+          <button class="btn">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
