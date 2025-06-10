@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: row;
+      height: 100vh;
+    }
+
+    .left {
+      flex: 1;
+      background: url('assets/img/login.png') no-repeat center center;
+      background-size: cover;
+    }
+
+    .right {
+      flex: 1;
+      background-color: #ffc177;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 80px;
+    }
+
+    .login-title {
+      font-size: 48px;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .form-group input {
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid #333;
+      background: transparent;
+      padding: 8px 0;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    .login-btn {
+      background-color: #c76d14;
+      color: white;
+    }
+
+    .signup-btn {
+      background: transparent;
+      color: #000;
+    }
+
+    .signup-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .left {
+        flex: none;
+        height: 40vh;
+      }
+
+      .right {
+        flex: none;
+        padding: 40px 30px;
+        height: auto;
+      }
+
+      .login-title {
+        font-size: 36px;
+        text-align: center;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+
+      .buttons button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-title {
+        font-size: 28px;
+      }
+
+      .form-group input {
+        font-size: 14px;
+      }
+
+      .buttons button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="left"></div>
+  <div class="right">
+    <div class="login-title">Login</div>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Enter your username" />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" />
+    </div>
+    <div class="buttons">
+  <a href="login.html"><button class="login-btn">Login</button></a>
+  <a href="signup.html"><button class="signup-btn">Sign Up</button></a>
+</div>
+  </div>
+</body>
+</html>

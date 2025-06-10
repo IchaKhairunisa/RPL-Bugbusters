@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Penghuni - Igloo Indekost</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      background-color: #fcf6e8;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #fdb462;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .sidebar hr {
+      border: none;
+      border-top: 2px solid #000;
+      margin: 20px 0;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: black;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .nav img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .content {
+      flex-grow: 1;
+      padding: 40px;
+    }
+
+    .btn-tambah {
+      background-color: #b86416;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #eee;
+    }
+
+    /* Modal Form */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+      background-color: white;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    }
+
+    .modal-content h2 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .modal-content button {
+      margin-top: 10px;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      background-color: #b86416;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .modal-content .close {
+      background-color: red;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div>
+      <div class="logo">
+        <img src="assets/icons/Home.png" alt="Logo">
+        <div class="logo-text">Igloo Indekost</div>
+      </div>
+      <hr />
+      <div class="nav">
+        <a href="datakamar.html"><img src="assets/icons/datakamar.png" alt="Data Kamar">Data Kamar</a>
+        <a href="datapenghuni.html"><img src="assets/icons/datapenghuni.png" alt="Data Penghuni">Data Penghuni</a>
+        <a href="#"><img src="assets/icons/datapembayaran.png" alt="Data Pembayaran">Data Pembayaran</a>
+        <a href="#"><img src="assets/icons/logout.png" alt="Logout">Log Out</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="content">
+    <button class="btn-tambah" onclick="bukaForm()">Tambah Penghuni</button>
+    <table id="tabelPenghuni">
+      <thead>
+        <tr>
+          <th>No Kamar</th>
+          <th>Nama Penghuni</th>
+          <th>No Handphone</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Kamar 01</td>
+          <td></td>
+          <td>085........</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Kamar 02</td>
+          <td></td>
+          <td>0866........</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal Form -->
+  <div id="formModal" class="modal">
+    <div class="modal-content">
+      <h2>Tambah Penghuni</h2>
+      <input type="text" id="inputKamar" placeholder="No Kamar (misal: Kamar 03)">
+      <input type="text" id="inputNama" placeholder="Nama Penghuni">
+      <input type="text" id="inputHP" placeholder="No Handphone">
+      <input type="text" id="inputStatus" placeholder="Status">
+      <button onclick="tambahPenghuni()">Simpan</button>
+      <button class="close" onclick="tutupForm()">Batal</button>
+    </div>
+  </div>
+
+  <script>
+    function bukaForm() {
+      document.getElementById("formModal").style.display = "block";
+    }
+
+    function tutupForm() {
+      document.getElementById("formModal").style.display = "none";
+    }
+
+    function tambahPenghuni() {
+      const noKamar = document.getElementById("inputKamar").value.trim();
+      const nama = document.getElementById("inputNama").value.trim();
+      const noHP = document.getElementById("inputHP").value.trim();
+      const status = document.getElementById("inputStatus").value.trim();
+
+      if (!noKamar || !nama || !noHP || !status) {
+        alert("Mohon lengkapi semua data.");
+        return;
+      }
+
+      const tableBody = document.querySelector("#tabelPenghuni tbody");
+      const newRow = document.createElement("tr");
+
+      newRow.innerHTML = `
+        <td>${noKamar}</td>
+        <td>${nama}</td>
+        <td>${noHP}</td>
+        <td>${status}</td>
+      `;
+
+      tableBody.appendChild(newRow);
+      tutupForm();
+
+      // Reset form
+      document.getElementById("inputKamar").value = "";
+      document.getElementById("inputNama").value = "";
+      document.getElementById("inputHP").value = "";
+      document.getElementById("inputStatus").value = "";
+    }
+  </script>
+</body>
+</html>
