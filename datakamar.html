@@ -152,10 +152,10 @@
       </div>
       <hr />
       <div class="nav">
-        <a href="#"><img src="assets/icons/datakamar.png" alt="Data Kamar">Data Kamar</a>
-        <a href="#"><img src="assets/icons/datapenghuni.png" alt="Data Penghuni">Data Penghuni</a>
+        <a href="datakamar.html"><img src="assets/icons/datakamar.png" alt="Data Kamar">Data Kamar</a>
+        <a href="datapenghuni.html"><img src="assets/icons/datapenghuni.png" alt="Data Penghuni">Data Penghuni</a>
         <a href="#"><img src="assets/icons/datapembayaran.png" alt="Data Pembayaran">Data Pembayaran</a>
-        <a href="#"><img src="assets/icons/logout.png" alt="Logout">Log Out</a>
+        <a href="login.html"><img src="assets/icons/logout.png" alt="Logout">Log Out</a>
       </div>
     </div>
   </div>
@@ -172,6 +172,8 @@
     <button class="btn" onclick="tambahKamar()">Simpan</button>
     <button class="btn" onclick="document.getElementById('form-popup').style.display='none'">Batal</button>
   </div>
+
+  
 
   <script>
     let kamarList = JSON.parse(localStorage.getItem('kamarList')) || [];
