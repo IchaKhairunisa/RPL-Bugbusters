@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detail Kamar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #fcf6e8;
+      padding: 40px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .container {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .photo-grid .large {
+      grid-column: span 2;
+      height: 200px;
+    }
+
+    .photo {
+      background-color: #e2a86f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      font-weight: bold;
+      height: 150px;
+      border-radius: 8px;
+    }
+
+    .facilities {
+      background-color: #f9dd7f;
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1;
+      min-width: 300px;
+      max-width: 350px;
+      height: fit-content;
+    }
+
+    .facilities h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .facility-item {
+      background-color: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .btn-sewa {
+      margin-top: 20px;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-sewa:hover {
+      background-color: #27ae60;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal h2 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .modal input[type="text"],
+    .modal input[type="email"],
+    .modal input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .modal .btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      margin-top: 10px;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .modal .btn.green {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    .modal .btn.red {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    /* Popup berhasil */
+    .popup-success {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      display: none;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 1001;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .popup-success p {
+      margin: 15px 0;
+    }
+
+    .popup-success button {
+      background-color: #2ecc71;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .photo-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Detail Kamar</h1>
+  <div class="container">
+    <div class="photo-grid">
+      <div class="photo large">FOTO KAMAR</div>
+      <div class="photo">FOTO KAMAR</div>
+      <div class="photo">FOTO KAMAR</div>
+      <div class="photo">FOTO KAMAR</div>
+    </div>
+
+    <div class="facilities">
+      <h2>Daftar Fasilitas</h2>
+      <div class="facility-item">KASUR DAN SEPREI</div>
+      <div class="facility-item">LEMARi PAKAIAN</div>
+      <div class="facility-item">MEJA BELAJAR</div>
+      <div class="facility-item">WIFI DAN INTERNET</div>
+      <button class="btn-sewa">Sewa Kamar</button>
+    </div>
+  </div>
+
+  <!-- Form Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <h2>Sewa Kamar</h2>
+      <input type="text" placeholder="Nama" />
+      <input type="email" placeholder="Email" />
+      <input type="text" placeholder="Jenis Kelamin" />
+      <input type="text" placeholder="No Telepon" />
+      <input type="file" />
+      <button class="btn green" onclick="showSuccess()">Pesan</button>
+      <button class="btn red" onclick="hideModal()">Batal</button>
+    </div>
+  </div>
+
+  <!-- Success Popup -->
+  <div class="popup-success" id="successPopup">
+    <h3>Berhasil!!!</h3>
+    <p>Kamar berhasil di pesan. Selanjutnya, proses pembayaran akan diinformasikan oleh pemilik kos melalui WhatsApp.</p>
+    <button onclick="closeSuccess()">Oke</button>
+  </div>
+
+  <script>
+    const modalOverlay = document.getElementById("modalOverlay");
+    const successPopup = document.getElementById("successPopup");
+
+    document.querySelector(".btn-sewa").addEventListener("click", function () {
+      modalOverlay.style.display = "flex";
+    });
+
+    function hideModal() {
+      modalOverlay.style.display = "none";
+    }
+
+    function showSuccess() {
+      modalOverlay.style.display = "none";
+      successPopup.style.display = "block";
+    }
+
+    function closeSuccess() {
+      successPopup.style.display = "none";
+    }
+  </script>
+</body>
+</html>
