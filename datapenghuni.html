@@ -169,7 +169,7 @@
         <a href="datakamar.html"><img src="assets/icons/datakamar.png" alt="Data Kamar">Data Kamar</a>
         <a href="datapenghuni.html"><img src="assets/icons/datapenghuni.png" alt="Data Penghuni">Data Penghuni</a>
         <a href="#"><img src="assets/icons/datapembayaran.png" alt="Data Pembayaran">Data Pembayaran</a>
-        <a href="#"><img src="assets/icons/logout.png" alt="Logout">Log Out</a>
+        <a href="login.html"><img src="assets/icons/logout.png" alt="Logout">Log Out</a>
       </div>
     </div>
   </div>
@@ -187,16 +187,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>Kamar 01</td>
-          <td></td>
-          <td>085........</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Kamar 02</td>
-          <td></td>
-          <td>0866........</td>
-          <td></td>
+          
         </tr>
       </tbody>
     </table>
@@ -216,44 +207,60 @@
   </div>
 
   <script>
-    function bukaForm() {
-      document.getElementById("formModal").style.display = "block";
-    }
+   
+  function bukaForm() {
+    document.getElementById("formModal").style.display = "block";
+  }
 
-    function tutupForm() {
-      document.getElementById("formModal").style.display = "none";
-    }
+  function tutupForm() {
+    document.getElementById("formModal").style.display = "none";
+  }
 
-    function tambahPenghuni() {
-      const noKamar = document.getElementById("inputKamar").value.trim();
-      const nama = document.getElementById("inputNama").value.trim();
-      const noHP = document.getElementById("inputHP").value.trim();
-      const status = document.getElementById("inputStatus").value.trim();
+   function tambahPenghuni() {
+  const noKamar = document.getElementById("inputKamar").value.trim();
+  const nama = document.getElementById("inputNama").value.trim();
+  const noHP = document.getElementById("inputHP").value.trim();
+  const status = document.getElementById("inputStatus").value.trim();
 
-      if (!noKamar || !nama || !noHP || !status) {
-        alert("Mohon lengkapi semua data.");
-        return;
-      }
+  if (!noKamar || !nama || !noHP || !status) {
+    alert("Mohon lengkapi semua data.");
+    return;
+  }
 
+  fetch("simpan_penghuni.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: `no_kamar=${encodeURIComponent(noKamar)}&nama=${encodeURIComponent(nama)}&no_hp=${encodeURIComponent(noHP)}&status=${encodeURIComponent(status)}`
+  })
+  .then(response => response.text())
+  .then(result => {
+    if (result.includes("Berhasil")) {
       const tableBody = document.querySelector("#tabelPenghuni tbody");
       const newRow = document.createElement("tr");
-
       newRow.innerHTML = `
         <td>${noKamar}</td>
         <td>${nama}</td>
         <td>${noHP}</td>
         <td>${status}</td>
       `;
-
       tableBody.appendChild(newRow);
       tutupForm();
 
-      // Reset form
       document.getElementById("inputKamar").value = "";
       document.getElementById("inputNama").value = "";
       document.getElementById("inputHP").value = "";
       document.getElementById("inputStatus").value = "";
+    } else {
+      alert("Gagal menyimpan data ke database: " + result);
     }
+  })
+  .catch(error => {
+    alert("Terjadi kesalahan: " + error);
+  });
+}
+
   </script>
 </body>
 </html>
